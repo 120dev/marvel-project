@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  vuejs-app:
+    build: .
+    container_name: marvel-project
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - /app/node_modules
