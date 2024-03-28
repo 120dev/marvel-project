@@ -1,29 +1,30 @@
-# marvel-project
+# Marvel Project
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a web application that utilizes the Marvel API to display Marvel series. It is built using Docker and Vue3.
 
-## Recommended IDE Setup
+## Prerequisites
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Before you begin, make sure you have Docker installed on your machine
 
-## Customize configuration
+## Setting Up the Project
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Follow these steps to set up the project on your local machine.
 
-## Project Setup
+### 1. Clone the Project
 
-```sh
-npm install
+```bash
+git clone https://github.com/120dev/marvel-project.git marvel-project
+cd marvel-project
+```
+2. Download the Docker Node.js Image
+```bash
+sudo docker pull node:latest
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+3. Build and Start the Project
+```bash
+sudo docker-compose up --build
 ```
 
-### Compile and Minify for Production
+Once the project is launched, open your browser and go to http://localhost:8888/
 
-```sh
-npm run build
-```
