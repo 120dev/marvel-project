@@ -56,7 +56,7 @@ const sortedData = computed(() => {
 });
 
 onMounted(async () => {
-  await getData('endYear');
+  await getData();
 });
 
 </script>

@@ -4,10 +4,10 @@
   </span>
 </template>
 
-<script>
-export default {
-  props: {
-    urls: Array,
-  }
-}
+<script setup>
+import { defineProps } from 'vue';
+
+defineProps({
+  urls: Array
+});
 </script>

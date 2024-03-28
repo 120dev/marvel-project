@@ -6,11 +6,11 @@
   </ul>
 </template>
 
-<script>
-export default {
-  props: {
-    items: Array,
-    itemKey: String
-  }
-}
+<script setup>
+import {defineProps} from 'vue';
+
+defineProps({
+  items: Array,
+  itemKey: String
+});
 </script>

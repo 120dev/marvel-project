@@ -6,10 +6,11 @@
   </ul>
 </template>
 
-<script>
-export default {
-  props: {
-    images: Array
-  }
-}
+<script setup>
+import { defineProps } from 'vue';
+
+defineProps({
+  images: Array
+});
 </script>
+
