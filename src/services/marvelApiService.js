@@ -1,6 +1,5 @@
 import http from "@/services/httpService.js";
 import CryptoJS from 'crypto-js';
-import { publicKey, privateKey } from "../../env.js";
 
 /**
  * Fetches data from the Marvel API.
@@ -11,6 +10,8 @@ import { publicKey, privateKey } from "../../env.js";
 export const fetchMarvel = async (path) => {
 
     const timestamp = new Date().getTime();
+    const publicKey = "ad03578d5d9923b867905c6485d3f738"
+    const privateKey = "a023716308f5834888aad4c6bdb321c2a413d174"
     const hashKey = CryptoJS.MD5(timestamp + privateKey + publicKey).toString();
 
     try {
