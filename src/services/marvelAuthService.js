@@ -8,7 +8,7 @@ export default {
         const auth = Cache.get('auth');
 
         if (!auth || !auth.publicKey || !auth.privateKey) {
-            throw new Error('Informations d\'authentification manquantes ou invalides.');
+            return false;
         }
 
         const timestamp = new Date().getTime();

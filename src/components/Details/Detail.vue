@@ -1,5 +1,7 @@
 <template>
-  {{ infos.data.count }} résultats
+  <div v-if="infos && infos.data && infos.data.count !== undefined">
+    {{ infos.data.count }} résultats
+  </div>
   <div v-if="infos && infos.data && infos.data.count > 0" class="no-bullets">
 
     <ul class="no-bullets content">

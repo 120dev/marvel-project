@@ -43,22 +43,22 @@ import { useRoute } from "vue-router";
  * Get public and private keys from MarvelAuthService
  * @type {string}
  */
-const {publicKey = '', privateKey = ''} = MarvelAuthService.getHashKey();
+const {publicKeyRef = '', privateKeyRef = ''} = MarvelAuthService.getHashKey();
 
 /**
  * Define reactive variables to store public and private keys
- * @type {Ref<UnwrapRef<boolean>>}
  */
 const showModal = ref(false);
-const publicKeyRef = ref(publicKey);
-const privateKeyRef = ref(privateKey);
+const publicKey = ref(publicKeyRef);
+const privateKey = ref(privateKeyRef);
 const authStatus = ref('');
 const route = useRoute();
+
 /**
  * Function to save data (public and private keys) to cache and redirect
  */
 const saveData = () => {
-  const data = {publicKey: publicKeyRef.value, privateKey: privateKeyRef.value};
+  const data = {publicKey: publicKey.value, privateKey: privateKey.value};
   Cache.set('auth', data);
   window.location.href = "/";
 }
