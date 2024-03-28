@@ -1,36 +1,23 @@
 import http from "@/services/httpService.js";
+import CryptoJS from 'crypto-js';
+import { publicKey, privateKey } from "../../env.js";
 
-export const fetchMarvel2 = async (path) => {
-    const ts = '1711461100';
-    const apiKey = '880bab78d7a48f995f507ac84583f52c';
-    const hash = '305d2371dcf12faa5aee4fc9eb5808e3';
-    const baseUrl = 'http://gateway.marvel.com/' + path;
-    const orderBy = '&orderBy=startYear';
-
-    const url = `?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Failed to fetch Marvel series');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching Marvel series:', error);
-        throw error; // Propagate the error
-    }
-};
-
+/**
+ * Fetches data from the Marvel API.
+ *
+ * @param path
+ * @returns {Promise<any|null>}
+ */
 export const fetchMarvel = async (path) => {
-    const ts = '1711461100';
-    const apiKey = '880bab78d7a48f995f507ac84583f52c';
-    const hash = '305d2371dcf12faa5aee4fc9eb5808e3';
-    const params = {ts, apikey: apiKey, hash};
+
+    const timestamp = new Date().getTime();
+    const hashKey = CryptoJS.MD5(timestamp + privateKey + publicKey).toString();
+
     try {
-        const {data} = await http.get(path, {params});
+        const {data} = await http.get(`http://gateway.marvel.com/v1/public/${path}?ts=${timestamp}&apikey=${publicKey}&hash=${hashKey}`);
         return data;
     } catch (error) {
-        console.error('Error : ' + error.message)
+        console.error('Error : ' + error.message);
+        return null;
     }
-
 };
