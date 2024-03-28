@@ -1,5 +1,5 @@
 import http from "@/services/httpService.js";
-import CryptoJS from 'crypto-js';
+import MarvelAuthService from "@/services/marvelAuthService.js";
 
 /**
  * Fetches data from the Marvel API.
@@ -9,16 +9,12 @@ import CryptoJS from 'crypto-js';
  */
 export const fetchMarvel = async (path) => {
 
-    const timestamp = new Date().getTime();
-    const publicKey = "ad03578d5d9923b867905c6485d3f738"
-    const privateKey = "a023716308f5834888aad4c6bdb321c2a413d174"
-    const hashKey = CryptoJS.MD5(timestamp + privateKey + publicKey).toString();
-
     try {
-        const {data} = await http.get(`http://gateway.marvel.com/v1/public/${path}?ts=${timestamp}&apikey=${publicKey}&hash=${hashKey}`);
+        const hashKey = MarvelAuthService.getHashKey();
+        const {data} = await http.get(`http://gateway.marvel.com/v1/public/${path}?${hashKey.url}`);
         return data;
     } catch (error) {
-        console.error('Error : ' + error.message);
-        return null;
+        window.location.href = "/auth?message=" + error.message;
     }
+
 };
