@@ -11,7 +11,7 @@ export const fetchMarvel = async (path) => {
 
     try {
         const hashKey = MarvelAuthService.getHashKey();
-        const {data} = await http.get(`http://gateway.marvel.com/v1/public/${path}?${hashKey.url}`);
+        const { data } = await http.get(`${path}?${hashKey.url}`);
         return data;
     } catch (error) {
         window.location.href = "/auth?message=" + error.message;
